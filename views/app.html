@@ -1,0 +1,35 @@
+<div ng-include="'views/header.html'"></div>
+<div class="p row center-xs middle-xs" style="min-height: 600px;height: 100vh;">
+    <div class="col-xs-2 card mh+">
+        <div>
+            <img src="images/users.png" height="200" width="200" style="margin:auto">
+        </div>
+        <div class="card__actions">
+            <lx-button lx-color="brown" lx-type="raised" ng-click="vm.goTo('usuario')">USUARIOS</lx-button>
+        </div>
+    </div>
+    <div class="col-xs-2 card mh+">
+        <div>
+            <img src="images/products.jpg" height="200" width="200" style="margin:auto">
+        </div>
+        <div class="card__actions">
+            <lx-button lx-color="primary" lx-type="raised" ng-click="vm.goTo('producto')">PRODUCTOS</lx-button>
+        </div>
+    </div>
+    <div class="col-xs-2 card mh+">
+            <div>
+                <img src="images/eat.png" height="200" width="200" style="margin:auto">
+            </div>
+            <div class="card__actions">
+                <lx-button lx-color="red" lx-type="raised" ng-click="vm.goTo('venta')">VENTAS</lx-button>
+            </div>
+        </div>
+    <div class="col-xs-2 card mh+">
+        <div>
+            <img src="images/report.png" height="200" width="200" style="margin:auto">
+        </div>
+        <div class="card__actions">
+            <lx-button lx-color="grey" lx-type="raised" ng-click="vm.goTo('reporte')">REPORTES</lx-button>
+        </div>
+    </div>
+</div>

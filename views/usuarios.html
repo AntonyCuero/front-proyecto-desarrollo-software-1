@@ -1,0 +1,36 @@
+<div ng-include="'views/header.html'"></div>
+<div class="p row middle-xs around-xs">
+    <div class="col-xs-7 ph+ pv row middle-xs">
+        <div class="col-xs-8 card m">
+            <div class="row p++">
+                <div class="col-xs-12">
+                    <lx-text-field lx-label="Nombre">
+                        <input type="text" ng-model="vm.input.nombre">
+                    </lx-text-field>
+                </div>
+                <div class="col-xs-12">
+                    <lx-text-field lx-label="Nombre de Usuario">
+                        <input type="text" ng-model="vm.input.usuario">
+                    </lx-text-field>
+                </div>
+                <div class="col-xs-12">
+                    <lx-select ng-model="vm.input.rol" lx-allow-clear="true" lx-choices="vm.roles" lx-fixed-label="true" lx-label="Rol">
+                        <lx-select-selected> {{ $selected }} </lx-select-selected>
+                        <lx-select-choices> {{ $choice }} </lx-select-choices>
+                    </lx-select>
+                </div>
+                <div class="col-xs-12">
+                    <lx-text-field lx-label="Contraseña">
+                        <input type="password" ng-model="vm.input.contrasena">
+                    </lx-text-field>
+                </div>
+                <div class="col-xs-12 mt++">
+                    <lx-button lx-color="primary" lx-type="raised" ng-click="vm.add()">Nuevo Usuario</lx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-5 card pb+">
+        <lx-data-table class="mb+" id="usuarios" lx-border="true" lx-thead="vm.dataTableThead" lx-tbody="vm.dataTableTbody"></lx-data-table>
+    </div>
+</div>

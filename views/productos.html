@@ -1,0 +1,30 @@
+<div ng-include="'views/header.html'"></div>
+<div class="p row center-xs middle-xs around-xs">
+    <div class="col-xs-7 ph+ pv row center-xs middle-xs">
+        <div class="col-xs-8 card m">
+            <div class="row p++">
+                <div class="col-xs-12">
+                    <lx-text-field lx-label="Url imagen">
+                        <input type="text" ng-model="vm.input.imagen">
+                    </lx-text-field>
+                </div>
+                <div class="col-xs-12">
+                    <lx-text-field lx-label="Nombre">
+                        <input type="text" ng-model="vm.input.nombre">
+                    </lx-text-field>
+                </div>
+                <div class="col-xs-12">
+                    <lx-text-field lx-label="Precio">
+                        <input type="number" ng-model="vm.input.precio">
+                    </lx-text-field>
+                </div>
+                <div class="col-xs-12 mt++">
+                    <lx-button lx-color="primary" lx-type="raised" ng-click="vm.add()">Añadir Producto</lx-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-5 card pb+">
+        <lx-data-table class="mb+" id="productos" lx-border="false" lx-thumbnail="true" lx-thead="vm.dataTableThead" lx-tbody="vm.dataTableTbody"></lx-data-table>
+    </div>
+</div>

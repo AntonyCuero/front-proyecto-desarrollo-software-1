@@ -1,0 +1,25 @@
+<div ng-include="'views/header.html'"></div>
+<div class="p row center-xs around-xs ">
+    <div class="col-xs-7 ph+ pv row center-xs middle-xs">
+        <div class="col-xs-3 card m" ng-repeat="producto in vm.products">
+            <div class="row">
+                <div class="card__img card__img--left col-xs-12">
+                    <img ng-src="{{producto.imagen}}" height="160" style="margin:auto">
+                </div>
+            </div>
+            <div class="card__actions">
+                <lx-button lx-color="red" lx-type="raised" ng-click="vm.add(producto, -1)">-</lx-button>
+                <lx-button lx-color="primary" lx-type="raised" ng-click="vm.add(producto, 1)">+</lx-button>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4 card pb+">
+        <div class="toolbar has-divider has-divider--dark">
+            <div class="toolbar__label pl">
+                <span>Total {{vm.total|number}}</span>
+            </div>
+        </div>
+        <lx-data-table class="mb+" id="productos" lx-thead="vm.dataTableThead" lx-tbody="vm.dataTableTbody"></lx-data-table>
+        <lx-button lx-type="raised" ng-if="vm.dataTableTbody.length>0" ng-click="vm.sell()">GENERAR VENTA</lx-button>
+    </div>
+</div>

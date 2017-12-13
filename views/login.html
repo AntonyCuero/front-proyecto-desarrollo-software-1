@@ -1,0 +1,25 @@
+<div class="p row center-xs middle-xs" style="min-height: 600px;height: 100vh;">
+    <div class="col-xs-6">
+        <div class="card">
+            <div class="p+">
+                <strong class="fs-headline display-block">¡Bienvenido A Tu Plataforma!</strong>
+                <div>
+                    <div class="paragraph fs-body-1 mt+">
+                        <form ng-submit="vm.login()" autocomplete="off">
+                            <lx-text-field lx-label="Usuario" lx-fixed-label="true" lx-icon="account">
+                                <input type="text" ng-model="vm.input.username" autocomplete="off">
+                            </lx-text-field>
+                            <lx-text-field lx-label="Contraseña" lx-fixed-label="true" lx-icon="lock">
+                                <input type="password" ng-model="vm.input.password" autocomplete="off">
+                            </lx-text-field>
+                            <input type="submit" value="enviar" ng-hide="true">
+                        </form>
+                    </div>
+                    <div class="card__actions">
+                        <lx-button lx-color="primary" ng-click="vm.login()" lx-type="raised">Iniciar Sesion</lx-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
