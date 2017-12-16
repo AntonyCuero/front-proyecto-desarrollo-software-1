@@ -50,10 +50,12 @@
                 }).then(response => {
                     LxNotificationService.success('Venta Actualizada!');
                     vm.dataTableTbodyVenta = vm.dataTableTbodyVenta.map(el => {
-                        if (response.data._id === el._id)
+                        if (response.data._id === el._id) {
                             el.total = vm.dataTableTbody.sum((item) => {
                                 return item.valor * item.cantidad;
                             })
+                            el.productos = response.data.productos;
+                        }
                         return el
                     })
                     vm.dataTableTbody = []
