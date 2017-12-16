@@ -3,4 +3,10 @@
         <img src="images/logo.png" height="50">
     </div>
     <span class="toolbar__label fs-title tc-white">Comidas Rapidas AnYiFa</span>
+    <div class="toolbar__right">
+        <span class="mr+ bold tc-white fs-subheading-2 display-block">{{vm.usuario.nombre}}</span>
+        <lx-button lx-type="icon" lx-color="white" ng-click="vm.cerrar()">
+            <i class="mdi mdi-login-variant"></i>
+        </lx-button>
+    </div>
 </div>

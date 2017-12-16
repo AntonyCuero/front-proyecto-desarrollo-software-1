@@ -4,6 +4,8 @@
         .controller('venta', venta);
     function venta($http, LxNotificationService, $state, localStorageService) {
         let vm = this;
+        vm.usuario = localStorageService.get('me');
+        vm.cerrar = cerrarSession;
         vm.add = anadirProducto;
         vm.sell = generarVenta;
         vm.home = inicio;
@@ -47,6 +49,10 @@
             vm.total = vm.dataTableTbody.sum(function (producto) {
                 return producto.valor * producto.cantidad;
             });
+        }
+        function cerrarSession(){
+            localStorageService.remove('me')
+            $state.go('login')
         }
     }
 })();

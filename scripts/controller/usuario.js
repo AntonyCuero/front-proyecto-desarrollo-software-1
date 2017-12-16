@@ -2,8 +2,10 @@
     'use strict';
     angular.module('controller')
         .controller('usuario', usuario);
-    function usuario($http, LxNotificationService, $state) {
+    function usuario($http, LxNotificationService, $state, localStorageService) {
         let vm = this;
+        vm.usuario = localStorageService.get('me');
+        vm.cerrar = cerrarSession;
         vm.add = anadirUsuario;
         vm.home = inicio;
         vm.input = {};
@@ -31,6 +33,10 @@
                 vm.dataTableTbody.push(response.data);
                 vm.input = {};
             });
+        }
+        function cerrarSession(){
+            localStorageService.remove('me')
+            $state.go('login')
         }
     }
 })();

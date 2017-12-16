@@ -25,6 +25,17 @@
         </div>
     </div>
     <div class="col-xs-5 card pb+">
-        <lx-data-table class="mb+" id="productos" lx-border="false" lx-thumbnail="true" lx-thead="vm.dataTableThead" lx-tbody="vm.dataTableTbody"></lx-data-table>
+        <div class="toolbar has-divider has-divider--dark">
+            <div class="toolbar__label pl">
+                <span>{{ vm.selectedRows[0].nombre}}</span>
+            </div>
+            <div class="toolbar__right">
+                <lx-button lx-size="l" ng-click="vm.edit()" lx-color="grey" lx-type="icon" ng-if="vm.selectedRows.length === 1">
+                    <i class="mdi mdi-pencil"></i>
+                </lx-button>
+            </div>
+        </div>
+        <lx-data-table class="mb+" lx-selectable="true" id="productos" lx-border="false" lx-thumbnail="true" lx-thead="vm.dataTableThead"
+            lx-tbody="vm.dataTableTbody"></lx-data-table>
     </div>
 </div>

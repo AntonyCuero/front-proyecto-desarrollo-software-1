@@ -2,8 +2,10 @@
     'use strict';
     angular.module('controller')
         .controller('reporte', reporte);
-    function reporte($http, LxNotificationService, $state) {
+    function reporte($http, LxNotificationService, $state, localStorageService) {
         let vm = this;
+        vm.usuario = localStorageService.get('me');
+        vm.cerrar = cerrarSession;
         vm.filter = alterarFecha;
         vm.home = inicio;
         vm.sales = [];
@@ -11,6 +13,7 @@
             vm.sales = response.data;
             vm.dataTableTbody = vm.sales.map(venta => {
                 let data = {
+                    usuario: venta.usuario && venta.usuario !== null ? venta.usuario : '',
                     fecha: new Date(venta.createdAt),
                     cantidad: venta.productos.sum((item) => {
                         return item.cantidad;
@@ -29,7 +32,8 @@
         vm.dataTableThead = [
             { name: 'fecha', label: 'Fecha', format: (row) => { return (row.fecha).format('{dd} {Mon} {yyyy}', 'es'); } },
             { name: 'cantidad', label: 'Cantidad Productos' },
-            { name: 'total', format: (row) => { return (row.total).format(); }, label: 'Total' }
+            { name: 'total', format: (row) => { return (row.total).format(); }, label: 'Total' },
+            { name: 'usuario', format: (row) => { return (row.usuario ? row.usuario.nombre : '').format(); }, label: 'Vendedor' }
         ]
         function inicio() {
             $state.go('app');
@@ -126,6 +130,10 @@
             });
             mostrarTorta();
             mostrarGraficos();
+        }
+        function cerrarSession(){
+            localStorageService.remove('me')
+            $state.go('login')
         }
     }
 })();

@@ -2,9 +2,10 @@
     'use strict';
     angular.module('controller')
         .controller('producto', product);
-    function product($http, LxNotificationService, $state) {
+    function product($scope, $http, LxNotificationService, $state) {
         let vm = this;
         vm.add = anadirProducto;
+        vm.edit = editarProducto;
         vm.home = inicio;
         vm.input = {};
         vm.dataTableTbody = []
@@ -37,10 +38,35 @@
                 LxNotificationService.warning('Completa los Campos')
                 return;
             }
-            $http({ method: 'POST', url: 'http://localhost:8585/api/producto', data: angular.copy(vm.input) }).then(response => {
-                vm.dataTableTbody.push(response.data);
-                vm.input = {};
-            });
+            if (vm.input._id) {
+                $http({ method: 'PUT', url: 'http://localhost:8585/api/producto/' + vm.input._id, data: angular.copy(vm.input) }).then(response => {
+                    vm.dataTableTbody = vm.dataTableTbody.map(el => {
+                        if (el._id === response.data._id) {
+                            el = angular.copy(response.data)
+                            vm.selectedRows= [];
+                        }
+                        return el
+                    })
+                    vm.input = {};
+                });
+            } else {
+                $http({ method: 'POST', url: 'http://localhost:8585/api/producto', data: angular.copy(vm.input) }).then(response => {
+                    vm.dataTableTbody.push(response.data);
+                    vm.input = {};
+                });
+            }
+        }
+        function editarProducto() {
+            vm.input = angular.copy(vm.selectedRows[0]);
+        }
+        $scope.$on('lx-data-table__selected', actualizarTabla);
+        $scope.$on('lx-data-table__unselected', actualizarTabla);
+        function actualizarTabla(_event, _dataTableId, _selectedRows) {
+            if (_selectedRows.length === 1) {
+                vm.selectedRows = _selectedRows;
+            } else if (_selectedRows.length > 1) {
+                vm.selectedRows = [_selectedRows.reverse()[0]]
+            }
         }
     }
 })();
