@@ -8,7 +8,7 @@
             <lx-button lx-color="brown" lx-type="raised" ng-click="vm.goTo('usuario')">USUARIOS</lx-button>
         </div>
     </div>
-    <div class="col-xs-2 card mh+">
+    <div class="col-xs-2 card mh+" ng-if="vm.usuario.rol==='admin'">
         <div>
             <img src="images/products.jpg" height="200" width="200" style="margin:auto">
         </div>

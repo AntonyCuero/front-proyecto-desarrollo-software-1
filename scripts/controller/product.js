@@ -2,8 +2,10 @@
     'use strict';
     angular.module('controller')
         .controller('producto', product);
-    function product($scope, $http, LxNotificationService, $state) {
+    function product($scope, $http, LxNotificationService, $state, localStorageService) {
         let vm = this;
+        vm.usuario = localStorageService.get('me');
+        vm.cerrar = cerrarSession;
         vm.add = anadirProducto;
         vm.edit = editarProducto;
         vm.home = inicio;
@@ -67,6 +69,10 @@
             } else if (_selectedRows.length > 1) {
                 vm.selectedRows = [_selectedRows.reverse()[0]]
             }
+        }
+        function cerrarSession(){
+            localStorageService.remove('me')
+            $state.go('login')
         }
     }
 })();
