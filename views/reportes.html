@@ -1,10 +1,10 @@
 <div ng-include="'views/header.html'"></div>
 <div class="p row center-xs around-xs ">
-    <div class="col-xs-7 ph+ pv row center-xs middle-xs">
-        <canvas id="productos" class="card col-xs-6 m" style="height:300px"></canvas>
-        <canvas id="horarios" class="card col-xs-10 m"  height="300" width="600" style="height:300px"></canvas>
+    <div class="col-xs-12 col-md-7 col-lg-7 ph+ pv row center-xs middle-xs">
+        <canvas id="productos" class="card col-xs-11 col-md-6 col-lg-6 m" style="height:300px"></canvas>
+        <canvas id="horarios" class="card col-xs-11 col-md-10 col-lg-10 m"  height="300" width="600" style="height:300px"></canvas>
     </div>
-    <div class="col-xs-4 card pb+">
+    <div class="col-xs-11 col-lg-4 col-md-4 card pb+">
         <div class="p+ pt0">
             <lx-date-picker lx-auto-close="true" ng-model="vm.input.date" lx-input-format="LL" lx-locale="es" lx-callback="vm.filter(newDate)">
                 <lx-text-field lx-allow-clear="true" lx-label="Filtro Por Fecha">
