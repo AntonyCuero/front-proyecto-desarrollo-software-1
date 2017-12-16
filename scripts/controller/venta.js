@@ -2,7 +2,7 @@
     'use strict';
     angular.module('controller')
         .controller('venta', venta);
-    function venta($scope, $http, LxNotificationService, $state, localStorageService) {
+    function venta($scope, $http, LxNotificationService, $state, localStorageService, LxDataTableService) {
         let vm = this;
         vm.usuario = localStorageService.get('me');
         vm.edit = editarProducto;
@@ -41,7 +41,7 @@
             $state.go('app');
         }
         function generarVenta() {
-            if (vm.selectedRows.length >= 1) {
+            if (vm.selectedRows && vm.selectedRows.length >= 1) {
                 $http({
                     method: 'PUT', url: 'http://localhost:8585/api/venta/' + vm.selectedRows[0]._id,
                     data: {
@@ -58,7 +58,7 @@
                     })
                     vm.dataTableTbody = []
                     vm.total = 0;
-                    vm.selectedRows = []
+                    LxDataTableService.unselectAll("ventas")
                 });
             } else {
                 $http({
@@ -70,8 +70,14 @@
                 }).then(response => {
                     LxNotificationService.success('Venta Generada!');
                     vm.dataTableTbody = []
+                    vm.dataTableTbodyVenta.push({
+                        _id: response.data._id,
+                        productos: response.data.productos,
+                        hora: new Date(response.data.createdAt).getHours() + ':' + new Date(response.data.createdAt).getMinutes(),
+                        total: vm.total
+                    })
+                    vm.total = 0;
                 });
-                vm.total = 0;
             }
         }
         function anadirProducto(p, value) {
