@@ -54,7 +54,9 @@
                             el.total = vm.dataTableTbody.sum((item) => {
                                 return item.valor * item.cantidad;
                             })
-                            el.productos = response.data.productos;
+                            el.productos = response.data.productos.map(pr=>{
+                                return {cantidad: pr.cantidad, nombre: pr.producto.nombre}
+                            });
                         }
                         return el
                     })
